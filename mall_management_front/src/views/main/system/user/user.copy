@@ -1,0 +1,24 @@
+<script setup lang="ts">
+import userSearch from './cpns/search.vue';
+import userContent from './cpns/content.vue';
+import userModal from './cpns/user-modal.vue';
+</script>
+
+
+
+<template>
+  <div class="user">
+    <user-search />
+    <user-modal />
+    <user-content></user-content>
+  </div>
+</template>
+
+
+
+<style lang="less" scoped>
+.user {
+  border-radius: 8px;
+  overflow: hidden; // 确保圆角
+}
+</style>

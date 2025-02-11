@@ -1,0 +1,8 @@
+# 代码风格
+
+[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue}]
+charset = utf-8  # 字符集
+indent_size = 2  # 缩进大小
+indent_style = space  # 缩进风格
+insert_final_newline = true   # 文件末尾新填一行
+trim_trailing_whitespace = true # 去除行尾空白字符

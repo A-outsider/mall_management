@@ -1,0 +1,52 @@
+networks:
+  mall_management:
+    name : mall_management
+
+services:
+  mysql:
+    image: mysql:8.3.0
+    ports:
+      - 23306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: mall_management
+      TZ: Asia/Shanghai
+    volumes:
+      - ./data/mysql/data:/var/lib/mysql
+      - ./data/mysql/my.cnf:/etc/mysql/my.cnf
+      - ./data/mysql/init:/docker-entrypoint-initdb.d
+    command:
+      [
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci"
+      ]
+    networks:
+      - mall_management
+
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    init: true
+    ports:
+      - "26379:6379"
+    volumes:
+      - ./data/redis/data:/data
+    environment:
+      REDIS_PASSWORD: Fuck0668!
+    command: ["redis-server", "--requirepass", "123456"]
+    networks:
+      - mall_management
+
+
+mall_app:
+  image: mall_app
+  container_name: mall_app
+  ports:
+    - 38080:8080
+  depends_on:
+    - mysql
+    - redis
+  command: ["java", "-jar", "myapp.jar", "--spring.profiles.active=pro"]
+  networks:
+    - mall_management

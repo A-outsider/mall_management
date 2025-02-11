@@ -1,0 +1,14 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json", // 继承文件
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"], // 哪些文件需要编译
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+    "composite": true, // 指明该文件是被合成的
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "noImplicitAny": false, // 映射any
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"] // vscode代码提示
+    }
+  }
+}
